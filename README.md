@@ -6,7 +6,7 @@
 或者直接复制https://github.com/chenxingmoonset/selfmade-shuyuan/releases/download/booksource/mulShare.1.xbs
 随缘更新~ (❁´◡`❁)(❁´◡`❁)
 
-###################################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 源阅(testflight version)的一些源(未分组)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 2024.3.8
