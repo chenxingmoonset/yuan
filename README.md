@@ -3,7 +3,7 @@
 2023.10.3更新
 
 右侧release下载合集xbs文件，
-或者直接复制https://github.com/chenxingmoonset/selfmade-shuyuan/releases/download/booksource/mulShare.1.xbs
+或者[点击复制](https://github.com/chenxingmoonset/selfmade-shuyuan/releases/download/booksource/mulShare.1.xbs)
 (❁´◡`❁)(❁´◡`❁)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
