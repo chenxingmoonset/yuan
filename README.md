@@ -14,7 +14,7 @@ release，[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyu
 
 
 -----------------------------------------
-#### 源阅tf v1.0(51)目前实现功能如下(like legedo)：
+#### 源阅tf v1.0(51)目前实现功能如下(like legado)：
 >1. 登陆ui与登陆url
 >2. js库：全局复用js函数库，填写js源码或远程链接{"jsName":"https://xxx/xxx.js"}
 >3. 书源变量：通过`book.getVariable()`获取
@@ -67,6 +67,10 @@ java.getString(ruleStr: String?, isUrl: Boolean = false)
 java.getElements(ruleStr : String)
 //输入规则ruleStr获取节点列表，返回类型List<Any>
 ps：js库中可引入xiyueta库("https://www.xiyueta.com/js/xiyueta.min.js")作为解析html的第三方库
+
+java.toast(String)
+java.longToast(String)
+//弹窗提示
 
 js库中自定义函数：
 function functionName(){
