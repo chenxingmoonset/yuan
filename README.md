@@ -38,6 +38,10 @@ release，[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyu
 ```javascript
 java.ajax(urlStr: String)
 //请求网络，urlStr为字符串，返回值为string
+java.connect(urlStr: String, header:String)
+java.get()
+java.post(urlStr:String, body: String, headers:Map<string, string>)
+//网络请求
 
 java.base64Decode(str: String)
 java.base64Encode(str: String)
@@ -48,10 +52,10 @@ java.md5Encode(str: String)
 ps:js库中可引入crypto-js库全局调用
 
 /*
-decodeURI(str: String)
-decodeURIComponent()
-encodeURI(str: String)
-encodeURIComponent()
+java.decodeURI(str: String)
+java.decodeURIComponent()
+java.encodeURI(str: String)
+java.encodeURIComponent()
 */
 //URI解码与编码，返回String
 
@@ -72,10 +76,18 @@ java.toast(String)
 java.longToast(String)
 //弹窗提示
 
+java.randomUUID()
+//随机生成UUID
+
 js库中自定义函数：
 function functionName(){
   ...//function code
 }
 
+#############################
+未实现：
+startBrowser()、startBrowserAwait()
+webView()、webViewGetSource()、webViewGetOverrideUrl()
+getVerificationCode()
 待续...
 ```
