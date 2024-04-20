@@ -16,8 +16,8 @@ release，[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyu
 -----------------------------------------
 #### 源阅tf v1.0(51)目前实现功能如下(like legedo)：
 >1. 登陆ui与登陆url
->2. js库：全局复用js函数库，填写js源码或远程链接{”jsName“:”https://xxx/xxx.js“}
->3. 书源变量：通过**book.getVariable()**获取
+>2. js库：全局复用js函数库，填写js源码或远程链接{"jsName":"https://xxx/xxx.js"}
+>3. 书源变量：通过`book.getVariable()`获取
 >4. 清除Cookie(待完善规则内cookie相关函数)
 >5. 变量的put与get
 >>⑴. `@put`与`@get`只能用于js以外的规则中，`@put`里使用JSONPath不需要加引号，其他规则需要加引号
