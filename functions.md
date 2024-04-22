@@ -22,7 +22,7 @@
 >10. 隔空阅读，同局域网下阅读书籍与编辑书源
 
 
-# 源阅v1.0(51)内实现函数如下:
+# 源阅v1.0(51)书源内实现函数如下:
 ```javascript
 java.ajax(urlStr: String)
 //请求网络，urlStr为字符串，返回值为string
