@@ -11,9 +11,9 @@
 >>- **baseUrl**变量-当前url，String
 >>- **result**变量-上一步的返回结果
 >>- **book**变量-书籍操作类，方法见 io.legado.app.data.entities.Book
->>- **cookie**变量-cookie操作类，方法见 io.legado.app.help.http.cookiesto
->>- **cache**变量-缓存操作类，方法见 io.legado.app.he1p.CacheManager
->>- **chapter**变量-当前目录类，方法见 io.legado.app.data.entities.BookChar
+>>- **cookie**变量-cookie操作类，方法见 io.legado.app.help.http.Cookiestore
+>>- **cache**变量-缓存操作类，方法见 io.legado.app.help.CacheManager
+>>- **chapter**变量-当前目录类，方法见 io.legado.app.data.entities.BookChapter
 >>- **title**变量-当前标题,String
 >>- **src**内容,源码
 >7. webdev源支持
