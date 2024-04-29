@@ -53,7 +53,7 @@ class Porn91 extends Deup {
       /document.write\(strencode2\("(?<data>(.*?))"\)\);/,
     );
     const { groups } = strencode2(data?.groups?.data).match(
-      /<source src='(?<url>(.*?))' type='application\/x-mpegURL'>/,
+      /<source src='(?<url>(.*?))' type='video\/mp4'>/,
     );
 
     return {
