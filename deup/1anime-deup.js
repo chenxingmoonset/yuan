@@ -97,7 +97,7 @@ class oneanime extends Deup {
             let list=[];
             const vidurl=content.match(/http.*?(m3u8|mp4)/g)[0];
             const vidsrc=vidurl.replace(/\\/g,"");
-            $alert(vidsrc);
+            //$alert(vidsrc);
             list.push({
                     id:object.extra.episodeid,
                     name:object.extra.episodename,
