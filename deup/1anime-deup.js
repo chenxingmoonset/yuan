@@ -29,7 +29,7 @@ class oneanime extends Deup {
     
 }
     
-    async list(object = null, offset = 0, limit = 20) {
+    async list(object = null, offset = 0, limit = 72) {
         if (object===null){
             const page = Math.floor(offset / limit) + 1;
             const response = await $axios.get(`https://1anime.me/vodshow/1--------${page}---.html`);
@@ -39,14 +39,15 @@ class oneanime extends Deup {
             const $a = $(el)//.find('a');
             const $image = $(el).find('div.module-item-pic img');
             const cover = $image.attr('data-original');
+            const vacover = this.valid(cover);
             const name = $a.attr('title');
             const id=$a.attr('href');
             list.push({
               id: id,
               name: name,
-              thumbnail: cover,
-              cover: cover,
-              poster: cover,
+              thumbnail: vacover,
+              cover: vacover,
+              poster: vacover,
               type: 'folder',
               extra:{list:"folder",},
             });
@@ -126,7 +127,12 @@ class oneanime extends Deup {
         return list;
     }
 
-
+    valid(url){
+        const host=`https://1anime.me`;
+        const hostPattern=/^(https?:\/\/)?(?:www\.)?([\w.-]+)/;
+        const match=url.match(hostPattern);
+        if (match&&match[2]){return url;} else {url =`${host}${url}`;return url;};
+}
     /*async axios(url){
         let resp=await $axios.get(url);
         return resp;
