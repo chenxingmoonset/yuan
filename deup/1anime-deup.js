@@ -10,7 +10,15 @@ class oneanime extends Deup {
     
     check = ()=>true;
     
-    
+    /*类型:1 新番派送,2 完结经典,3 绅士,4 电影*/
+    inputs = {
+        tag:{
+           label:"类型",
+           require:false,
+           placeholder:"类型参考注释，默认为1",
+      },
+    };
+
     async get(object) {
      
         return object;/*{
@@ -32,7 +40,9 @@ class oneanime extends Deup {
     async list(object = null, offset = 0, limit = 72) {
         if (object===null){
             const page = Math.floor(offset / limit) + 1;
-            const response = await $axios.get(`https://1anime.me/vodshow/1--------${page}---.html`);
+            const tag=(await $storage.inputs).tag || '1';
+            const url=`https://1anime.me/vodshow/${tag}--------${page}---.html`;
+            const response = await $axios.get(url);
             const $ = $cheerio.load(response.data);
             let list=[];
             $('a.module-item').map((i, el) => {
