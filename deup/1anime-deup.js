@@ -24,8 +24,10 @@ class oneanime extends Deup {
             'User-Agent':
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
           },
-        };*/
-    }
+        };
+*/
+    
+}
     
     async list(object = null, offset = 0, limit = 20) {
         if (object===null){
@@ -101,7 +103,8 @@ class oneanime extends Deup {
 
     async search(object, keyword, offset, limit=15){
         const page=Math.floor(offset/limit)+1;
-        const url=`https://1anime.me/vodsearch/-------------.html?wd=${keyword}&submit=`;
+        const url=`https://1anime.me/vodsearch/-------------.html?wd=${keyword}&submit=`
+;
         const response= await $axios.get(url);
         let list=[];
         const $=$cheerio.load(response.data);
@@ -121,7 +124,8 @@ class oneanime extends Deup {
             });
         });
         return list;
-    }
+    }
+
 
     /*async axios(url){
         let resp=await $axios.get(url);
