@@ -1,3 +1,4 @@
+/*Deup的webview范例*/
 class webView extends Deup {
   
  config = {
