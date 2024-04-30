@@ -1,1 +1,1 @@
-##some connected scripts for deup from tg channel
+##some collected scripts for deup from tg channel
