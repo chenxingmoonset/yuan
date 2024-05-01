@@ -1,3 +1,4 @@
+/* @author: Wang Flex */
 class NS extends Deup {
   config = {
     name: '小小工具',
