@@ -125,8 +125,9 @@ class eightmv extends Deup {
             const id=$(e).find('a').attr('href');
             list.push({
                 id:id,
-                namw:name,
+                name:name,
                 cover:cover,
+                thumbnail:cover,
                 poster:cover,
                 type:'folder',
                 extra:{list:"folder",},
