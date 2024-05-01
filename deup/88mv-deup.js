@@ -75,22 +75,26 @@ class eightmv extends Deup {
             return list;
         }
         if (object.extra.list==='episodelist'){
+            if (object.extra.list==='episodelist'){
             let host='https://m.88mv.org';
             let vidpurl=host.concat(object.extra.episodeid);
-            let resp=await $axios.get(vidpurl).data;
-            let src=resp.match(/(?<=escape\(').*?(?=')/g)[0];
+            let resp=await $axios.get(vidpurl);
+            let src=resp.data.match(/(?<=escape\(').*?(?=')/g)[0];
             src=unescape(src).match(/88ys.*/g)[0];
             let url='https://zj.jsjinfu.com:8443/?url='+src;
-            let content=await $axios.get(url).data;
+            //$alert(url);
+            let content=(await $axios.get(url)).data;
+            //$alert(content);
+            let vidurl=content.match(/http.*?(mp4|m3u8)/g)[0];
             //const $=$cheerio.load(resp.data);
             let obj={
               id:object.extra.id,
               name:object.extra.name,
-              //cover:object.cover,
-              type:'web',
-              url:'blob://text/'+content,}
-            /*let list=[];
-            $('iframe').map((item)=>{
+              poster:object.cover,
+              type:'video',
+              url:vidurl,}
+            let list=[];
+            /*$('iframe').map((item)=>{
                 const src=$(item).attr('src');
                 const body=this.axios(src);
                 const content=body.data;
@@ -108,6 +112,7 @@ class eightmv extends Deup {
             return list;
         }
     }
+
 
     async search(object = null, keyword, offset = 0, limit=20){
         const page=Math.floor(offset/limit)+1;
