@@ -1,3 +1,4 @@
+/* @author: TT */
 class BZ extends Deup {
   config = {
     name: '包子漫画新',
