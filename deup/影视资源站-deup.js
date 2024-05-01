@@ -1,4 +1,4 @@
-
+/* @author：Wang Flex */
 class VD extends Deup {
    config = {
     name: '影视资源站',
