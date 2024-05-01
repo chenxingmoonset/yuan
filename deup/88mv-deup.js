@@ -2,8 +2,8 @@ class eightmv extends Deup {
 
     config = {
     name: '88影视',
-    logo:'https://www.88mv.org/template/pc88ysw/Images/logo.png',
-    layout:'poster',
+    logo:'https://p1.bdxiguaimg.com/origin/137540001cc698530aec1',
+    //layout:'poster',
     pageSize:20,
     timeout:5000
     };
@@ -75,7 +75,6 @@ class eightmv extends Deup {
             return list;
         }
         if (object.extra.list==='episodelist'){
-            if (object.extra.list==='episodelist'){
             let host='https://m.88mv.org';
             let vidpurl=host.concat(object.extra.episodeid);
             let resp=await $axios.get(vidpurl);
@@ -89,8 +88,8 @@ class eightmv extends Deup {
             //const $=$cheerio.load(resp.data);
             let obj={
               id:object.extra.id,
-              name:object.extra.name,
-              poster:object.cover,
+              name:object.name,
+              //poster:object.cover,
               type:'video',
               url:vidurl,}
             let list=[];
@@ -112,7 +111,6 @@ class eightmv extends Deup {
             return list;
         }
     }
-
 
     async search(object = null, keyword, offset = 0, limit=20){
         const page=Math.floor(offset/limit)+1;
