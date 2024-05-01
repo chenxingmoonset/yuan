@@ -1,7 +1,7 @@
-class emv extends Deup {
+class eightmv extends Deup {
 
     config = {
-    name: '八八影视',
+    name: '88影视',
     logo:'https://www.88mv.org/template/pc88ysw/Images/logo.png',
     layout:'poster',
     pageSize:20,
@@ -77,17 +77,20 @@ class emv extends Deup {
         if (object.extra.list==='episodelist'){
             let host='https://m.88mv.org';
             let vidpurl=host.concat(object.extra.episodeid);
-            let resp=await $axios.get(vidpurl);
-            
+            let resp=await $axios.get(vidpurl).data;
+            let src=resp.match(/(?<=escape\(').*?(?=')/g)[0];
+            src=unescape(src).match(/88ys.*/g)[0];
+            let url='https://zj.jsjinfu.com:8443/?url='+src;
+            let content=await $axios.get(url).data;
             //const $=$cheerio.load(resp.data);
             let obj={
               id:object.extra.id,
               name:object.extra.name,
-              poster:object.cover,
-              type:'webview',
-              url:'blob://text/'+resp.data,};
-            let list=[];
-            /*$('iframe').map((item)=>{
+              //cover:object.cover,
+              type:'web',
+              url:'blob://text/'+content,}
+            /*let list=[];
+            $('iframe').map((item)=>{
                 const src=$(item).attr('src');
                 const body=this.axios(src);
                 const content=body.data;
@@ -136,4 +139,4 @@ class emv extends Deup {
         
 }
 
-Deup.execute(new emv());
+Deup.execute(new eightmv());
