@@ -15,3 +15,7 @@ release，[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyu
 
 -----------------------------------------
 ### 源阅tf功能介绍见functions.md
+
+-----------------------------------------
+## deup的一些源和jsbox一些脚本
+>isuploading....
