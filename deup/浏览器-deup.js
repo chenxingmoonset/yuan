@@ -1,4 +1,4 @@
-/*Deup的rss订阅示例*/
+/*Deup的rss订阅示例  需要version>1.0.6 */
 class webView extends Deup {
   
  config = {
