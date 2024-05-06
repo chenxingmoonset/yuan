@@ -30,37 +30,40 @@ class ytb extends Deup {
         if (object===null){
             const page = Math.floor(offset / limit) + 1;
             const response = await $axios.get('https://www.youtube.com/feed/explore?app=desktop');
-            const $ = $cheerio.load(response.data);
+            //const $ = $cheerio.load(response.data);
+            const txt=response.data.match(/(?<=ytInitialData = ').*?(?=';<)/g)[0];
+            this.deshow(txt);
+            const $=JSON.parse(txt);
             let list=[];
-            $('#grid-container').children('ytd-video-renderer').map((i, el) => {
-            const $a = $(el).find('a#video-title');
-            const $image = $(el).find('a#thumbnail>yt-image>img');
-            const cover = $image.attr('src');
-            const name = $a.attr('title');
-            const id = $a.attr('href');
-            const size = $(el).find('badge-shape>div').text();
-            const author = $(el).find('div#text-container>#text>div').text();
-            const audience = $(el).find('#metadata-line > span:nth-child(3)').text();
-            const remark = "视频时长：" + size + "；作者：" + author + "；观看人数：" + audience;
-            const created = $(el).find('#metadata-line > span:nth-child(4)').text();
-            list.push({
-              id: id,
-              name: name,
-              remark: remark,
-              thumbnail: cover,
-              cover: cover,
-              poster: cover,
-              created: created,
-              type: 'folder',
-              extra:{step:"1",},
-              headers: {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',},
-            });
+            const item=$.contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents;
+            item.forEach((element) => {
+                const $el=element.itemSectionRenderer.contents[0]
+                const cover=$el.videoWithContextRenderer.thumbnail.thumbnails[0].url;//0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
+                const name = $el.videoWithContextRenderer.headline.runs[0].text;
+                const id = $el.videoWithContextRenderer.videoId;
+                const size = $el.videoWithContextRenderer.lengthText.accessibility.accessibilityData.label;
+                const author = $el.videoWithContextRenderer.shortBylineText.runs[0].text;
+                const audience = $el.videoWithContextRenderer.shortViewCountText.runs[0].text;
+                const remark = "视频时长：" + size + "；作者：" + author + "；观看人数：" + audience;
+                const created = $el.videoWithContextRenderer.publishedTimeText.runs[0].text;
+                list.push({
+                    id: id,
+                    name: name,
+                    remark: remark,
+                    thumbnail: cover,
+                    cover: cover,
+                    poster: cover,
+                    created: created,
+                    type: 'folder',
+                    extra:{step:"1",},
+                    headers: {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',},
+                });
             });
             return list;
         }
         if (object.type === "folder"){
             let host = "https://www.youtube.com/embed/";
-            var vid = object.id.match(/(?<==).+/g)[0];
+            var vid = object.id//.match(/(?<==).+/g)[0];
             let url = host.concat(vid);
             let resp = await $axios.get(url);
             let list = [];
@@ -96,38 +99,52 @@ class ytb extends Deup {
     async search(object = null, keyword, offset = 0, limit=20){
         const page = Math.floor(offset / limit) + 1;
         const response = await $axios.get('https://www.youtube.com/results?search_query=${keyword}');
-        const $ = $cheerio.load(response.data);
-        let list=[];
-        $('#grid-container').children('ytd-video-renderer').map((i, el) => {
-        const $a = $(el).find('a#video-title');
-        const $image = $(el).find('a#thumbnail>yt-image>img');
-        const cover = $image.attr('src');
-        const name = $a.attr('title');
-        const id = $a.attr('href');
-        const size = $(el).find('badge-shape>div').text();
-        const author = $(el).find('div#text-container>#text>div').text();
-        const audience = $(el).find('#metadata-line > span:nth-child(3)').text();
-        const remark = "视频时长：" + size + "；作者：" + author + "；观看人数：" + audience;
-        const created = $(el).find('#metadata-line > span:nth-child(4)').text();
-        list.push({
-          id: id,
-          name: name,
-          remark: remark,
-          thumbnail: cover,
-          cover: cover,
-          poster: cover,
-          created: created,
-          type: 'folder',
-          extra:{step:"1",},
-          headers: {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',},
-        });
-        });
-        return list;
-    }
+            //const $ = $cheerio.load(response.data);
+            const txt=response.data.match(/(?<=ytInitialData = ').*?(?=';<)/g)[0];
+            this.deshow(txt);
+            const $=JSON.parse(txt);
+            let list=[];
+            const item=$.contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents;
+            item.forEach((element) => {
+                const $el=element.itemSectionRenderer.contents[0]
+                const cover=$el.videoWithContextRenderer.thumbnail.thumbnails[0].url;//0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
+                const name = $el.videoWithContextRenderer.headline.runs[0].text;
+                const id = $el.videoWithContextRenderer.videoId;
+                const size = $el.videoWithContextRenderer.lengthText.accessibility.accessibilityData.label;
+                const author = $el.videoWithContextRenderer.shortBylineText.runs[0].text;
+                const audience = $el.videoWithContextRenderer.shortViewCountText.runs[0].text;
+                const remark = "视频时长：" + size + "；作者：" + author + "；观看人数：" + audience;
+                const created = $el.videoWithContextRenderer.publishedTimeText.runs[0].text;
+                list.push({
+                    id: id,
+                    name: name,
+                    remark: remark,
+                    thumbnail: cover,
+                    cover: cover,
+                    poster: cover,
+                    created: created,
+                    type: 'folder',
+                    extra:{step:"1",},
+                    headers: {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',},
+                });
+            });
+            return list;
+        }
 
     async axios(url){
         let resp=await $axios.get(url);
         return resp;
+    }
+
+    async deshow(txt){
+        txt=txt.replace(/\x22/g,'"');
+        txt=txt.replace(/\x3d/g,'=');
+        txt=txt.replace(/\x7b/g,'{');
+        txt=txt.replace(/\x7d/g,'}');
+        txt=txt.replace(/\x5b/g,'[');
+        txt=txt.replace(/\x5d/g,']');
+        txt=txt.replace(/\x27/g,"'");
+        return txt;
     }
         
 }
