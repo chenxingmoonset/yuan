@@ -1,4 +1,4 @@
-/* 测试中 */
+/*testing*/
 class ytb extends Deup {
 
     config = {
@@ -35,17 +35,17 @@ class ytb extends Deup {
             this.deshow(txt);
             const $=JSON.parse(txt);
             let list=[];
-            const item=$.contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents;
+            const item=$.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].selfRenderer.content.horizontalListRenderer.items;
             item.forEach((element) => {
-                const $el=element.itemSectionRenderer.contents[0]
-                const cover=$el.videoWithContextRenderer.thumbnail.thumbnails[0].url;//0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
-                const name = $el.videoWithContextRenderer.headline.runs[0].text;
-                const id = $el.videoWithContextRenderer.videoId;
-                const size = $el.videoWithContextRenderer.lengthText.accessibility.accessibilityData.label;
-                const author = $el.videoWithContextRenderer.shortBylineText.runs[0].text;
-                const audience = $el.videoWithContextRenderer.shortViewCountText.runs[0].text;
+                const $el=element.gridVideoRenderer;
+                const cover=$el.thumbnail.thumbnails[0].url;//0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
+                const name = $el.title.runs[0].text;
+                const id = $el.videoId;
+                const size = $el.lengthText.accessibility.accessibilityData.label;
+                const author = $el.shortBylineText.runs[0].text;
+                const audience = $el.ViewCountText.simpleText;
                 const remark = "视频时长：" + size + "；作者：" + author + "；观看人数：" + audience;
-                const created = $el.videoWithContextRenderer.publishedTimeText.runs[0].text;
+                const created = $el.publishedTimeText.simpleText;
                 list.push({
                     id: id,
                     name: name,
@@ -104,17 +104,17 @@ class ytb extends Deup {
             this.deshow(txt);
             const $=JSON.parse(txt);
             let list=[];
-            const item=$.contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents;
+            const item=$.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].selfRenderer.content.horizontalListRenderer.items;
             item.forEach((element) => {
-                const $el=element.itemSectionRenderer.contents[0]
-                const cover=$el.videoWithContextRenderer.thumbnail.thumbnails[0].url;//0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
-                const name = $el.videoWithContextRenderer.headline.runs[0].text;
-                const id = $el.videoWithContextRenderer.videoId;
-                const size = $el.videoWithContextRenderer.lengthText.accessibility.accessibilityData.label;
-                const author = $el.videoWithContextRenderer.shortBylineText.runs[0].text;
-                const audience = $el.videoWithContextRenderer.shortViewCountText.runs[0].text;
+                const $el=element.gridVideoRenderer;
+                const cover=$el.thumbnail.thumbnails[0].url;//0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
+                const name = $el.title.runs[0].text;
+                const id = $el.videoId;
+                const size = $el.lengthText.accessibility.accessibilityData.label;
+                const author = $el.shortBylineText.runs[0].text;
+                const audience = $el.ViewCountText.simpleText;
                 const remark = "视频时长：" + size + "；作者：" + author + "；观看人数：" + audience;
-                const created = $el.videoWithContextRenderer.publishedTimeText.runs[0].text;
+                const created = $el.publishedTimeText.simpleText;
                 list.push({
                     id: id,
                     name: name,
