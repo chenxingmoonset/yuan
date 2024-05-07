@@ -29,14 +29,14 @@ class ytb extends Deup {
     async list(object = null, offset = 0, limit = 20) {
         if (object===null){
             const page = Math.floor(offset / limit) + 1;
-            const response = await $axios.get('https://www.youtube.com/music');
+            const response = await $axios.get('https://www.youtube.com/feed/explore');
 
             const txt=response.data.match(/(?<=ytInitialData =).*?(?=;<)/g)[0];
             //this.deshow(txt);
             const $=JSON.parse(txt);
             //$alert(txt);
             let list=[];
-            const item=$.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[3].itemSectionRenderer.contents[0].shelfRenderer.content.expandedShelfContentsRenderer.items;
+            const item=$.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[4].itemSectionRenderer.contents[0].shelfRenderer.content.expandedShelfContentsRenderer.items;
             item.forEach((element) => {
                 const $el=element.videoRenderer;
                 const cover=$el.thumbnail.thumbnails[0].url;//0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
