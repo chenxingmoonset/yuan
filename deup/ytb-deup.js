@@ -79,7 +79,7 @@ class ytb extends Deup {
                 thumbnail: object.cover,
                 cover:object.cover,
                 poster:object.cover,
-                created:object.created,
+                //created:object.created,
             });
             list.push({
                 id: '2',
@@ -90,7 +90,7 @@ class ytb extends Deup {
                 thumbnail: object.cover,
                 cover:object.cover,
                 poster:object.cover,
-                created:object.created,
+                //created:object.created,
             });
             return list;
         }
@@ -108,18 +108,19 @@ class ytb extends Deup {
             const item=$.contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0].itemSectionRenderer.contents;
             //$alert(item[0]);
             item.forEach((element) => {
-                const $el=element.playlistRenderer||element.videoRenderer;
-                //$alert($el);
+                const $el=element.videoRenderer;//hasOwnProperty("videoRenderer")?element.videoRenderer:element.playListRenderer;
+                $alert($el);
                 //0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
-                const name = $el.title.runs[0].text;
+                const name = $el.title.runs[0].text;//$alert(name);
                 const id = $el.videoId;
                 const cover="https://i.ytimg.com/vi/"+id+"/hq720.jpg";
                 const size = $el.lengthText.accessibility.accessibilityData.label;
                 const author = $el.shortBylineText.runs[0].text;
                 const audience = $el.viewCountText.simpleText;
                 const remark = "时长: " + size + "; 作者：" + author + "；观看人数：" + audience;
+                //$alert(remark);
                 const created = $el.publishedTimeText.simpleText;
-                const url = $el.navigationEndpoint.watchEndpoint.watchEndpointSupportedOnesieConfig.html5PlaybackOnesieConfig.commonConfig.url;
+                //const url = $el.navigationEndpoint.watchEndpoint.watchEndpointSupportedOnesieConfig.html5PlaybackOnesieConfig.commonConfig.url;
                 list.push({
                     id: id,
                     name: name,
@@ -129,7 +130,7 @@ class ytb extends Deup {
                     poster: cover,
                     //created: created,
                     type: 'folder',
-                    extra:{"step":1,url:url},
+                    extra:{"step":1,},//url:url},
                     headers: {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',},
                 });
             });
