@@ -31,7 +31,7 @@ class ytb extends Deup {
             const page = Math.floor(offset / limit) + 1;
             const response = await $axios.get('https://www.youtube.com/feed/explore?app=desktop');
             //const $ = $cheerio.load(response.data);
-            const txt=response.data.match(/(?<=ytInitialData = ').*?(?=';<)/g)[0];
+            const txt=response.data.match(/(?<=ytInitialData =).*?(?=;<)/g)[0];
             this.deshow(txt);
             const $=JSON.parse(txt);
             let list=[];
@@ -100,7 +100,7 @@ class ytb extends Deup {
         const page = Math.floor(offset / limit) + 1;
         const response = await $axios.get('https://www.youtube.com/results?search_query=${keyword}');
             //const $ = $cheerio.load(response.data);
-            const txt=response.data.match(/(?<=ytInitialData = ').*?(?=';<)/g)[0];
+            const txt=response.data.match(/(?<=ytInitialData =).*?(?=;<)/g)[0];
             this.deshow(txt);
             const $=JSON.parse(txt);
             let list=[];
