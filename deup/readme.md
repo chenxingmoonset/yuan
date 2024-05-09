@@ -1,6 +1,6 @@
-## 一些从tg频道搜集的deup源（小部分是我写的）  
-*some collected scripts for deup from tg channel*
-<?![deuplogo](https://raw.githubusercontent.com/chenxingmoonset/yuan/main/deup/deup.png)>
+## 一些从tg频道搜集的deup源
+## *some collected scripts for deup from tg channel*
+![deuplogo](https://raw.githubusercontent.com/chenxingmoonset/yuan/main/deup/deup.png)>
 
 #### 描述  *scripts describe*
 > 1. 万物皆可folder   *Everything can be put in "folder" type.*
