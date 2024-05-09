@@ -107,32 +107,32 @@ class ytb extends Deup {
             let list=[];
             const item=$.contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0].itemSectionRenderer.contents;
             //$alert(item[0]);
-            item.forEach((element) => {
-                const $el=element.videoRenderer;//hasOwnProperty("videoRenderer")?element.videoRenderer:element.playListRenderer;
-                $alert($el);
+                        item.forEach((element) => {
+                if(element.hasOwnProperty("videoRenderer")===true && element !==null && !Array.isArray(element)){
+                const $el=element.videoRenderer//element.playListRenderer;console.log(typeof(element)==="object");
                 //0: 120x90,default; 1:320x180,mq; 2:480x360,hq; 3:640x480,sd; 4:686x386, hq720
-                const name = $el.title.runs[0].text;//$alert(name);
+                const name = $el.title.runs[0].text;//console.log(name);
                 const id = $el.videoId;
                 const cover="https://i.ytimg.com/vi/"+id+"/hq720.jpg";
                 const size = $el.lengthText.accessibility.accessibilityData.label;
                 const author = $el.shortBylineText.runs[0].text;
                 const audience = $el.viewCountText.simpleText;
                 const remark = "时长: " + size + "; 作者：" + author + "；观看人数：" + audience;
-                //$alert(remark);
                 const created = $el.publishedTimeText.simpleText;
-                //const url = $el.navigationEndpoint.watchEndpoint.watchEndpointSupportedOnesieConfig.html5PlaybackOnesieConfig.commonConfig.url;
+                const url = $el.navigationEndpoint.watchEndpoint.watchEndpointSupportedOnesieConfig.html5PlaybackOnesieConfig.commonConfig.url;
+                //await setCache("vidurl", {"url":url});
                 list.push({
                     id: id,
                     name: name,
                     remark: remark,
-                    thumbnail: cover,
                     cover: cover,
-                    poster: cover,
-                    //created: created,
-                    type: 'folder',
-                    extra:{"step":1,},//url:url},
-                    headers: {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',},
+                    created: created,
+                    url: url,
+                    //headers: {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',},
                 });
+                }else{
+                $alert("error!");
+                };
             });
             return list;
         }
