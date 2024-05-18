@@ -1,4 +1,4 @@
-/*基于tt大佬的包子漫画改写*/
+/*is building*/
 class HMG extends Deup {
     config = {
     name:"韩漫",
