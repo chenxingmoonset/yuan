@@ -1,6 +1,6 @@
-# 源阅tf v1.0(54)目前实现功能如下(like legado)：
+# 源阅tf v1.0(55)目前实现功能如下(like legado)：
 >1. 登陆ui与登陆url，完善书源网页登录逻辑
->2. js库：全局复用js函数库，在书源,rss订阅源,语音源中均实现。格式：直接填写js源码或远程url链接加载{"jsName":"https://xxx/xxx.js"}
+>2. jslib：全局复用js函数库，在书源,rss订阅源,语音源中均实现。格式：直接填写js源码或远程url链接加载{"jsName":"https://xxx/xxx.js"}
 >3. 书源变量：通过`book.getVariable()`获取
 >4. 清除Cookie(待完善规则内cookie相关函数)
 >5. 变量的put与get
@@ -26,11 +26,13 @@
 >14. 浏览器实现广告屏蔽，可手动标记广告或自行编写屏蔽规则
 >15. 新增小组件，改进通知栏样式
 >16. 添加目录规则源及管理功能
->17. 新增CookieJar，cookie相关操作仍待适配
+>17. 净化规则兼容排除范围字段
+>18. 新增CookieJar，cookie相关操作仍待测试
+>19. 待测试js引擎的websocket请求（可用于edge-tts大声朗读语音源的请求）
 ***********************************************************************
 ### 更多功能正在更新测试中......
 
-# 源阅v1.0(52)书源内实现函数如下:
+# 源阅v1.0(55)书源内实现函数如下:
 ```javascript
 java.ajax(urlStr: String)
 //请求网络，urlStr为字符串，返回值为string
@@ -83,6 +85,8 @@ function functionName(){
 }
 
 #############################
+待测试cookie变量的相关操作：存储、去除、取用、设置等
+
 未实现：
 log()
 startBrowser()、startBrowserAwait()
