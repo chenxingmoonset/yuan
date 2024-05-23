@@ -14,7 +14,7 @@ release，[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyu
 
 
 -----------------------------------------
-### 源阅tf功能介绍见functions.md
+### 源阅tf功能介绍见functions.md，[点击前往](https://github.com/chenxingmoonset/yuan/blob/main/functions.md)
 
 -----------------------------------------
 ## deup的收集源、jsbox脚本，益达源
