@@ -18,7 +18,7 @@
 >>- **src**内容,源码
 >7. 大幅度优化适配订阅源
 >8. 完善源调试功能，增加请求源码和日志显示，书源调试增加兼容性检测
->9. 完善flt写法，在源发现界面显示更直观简约。示例：｀flt:https://www.example.com/tag1={{tag1}}&tag2={{tag2}}&page={{page}}&&tag1::key1=value1,key2=value2&&tag2::key3=value3,key4=value4｀    tag1和tag2为标签名，key为标签属性名，value为key对应的属性值
+>9. 完善flt写法，在源发现界面显示更直观简约。示例：`flt:https://www.example.com/tag1={{tag1}}&tag2={{tag2}}&page={{page}}&&tag1::key1=value1,key2=value2&&tag2::key3=value3,key4=value4`   tag1和tag2为标签名，key为标签属性名，value为key对应的属性值
 >10. webdav源支持
 >11. 小说、漫画缓存和加密导出（音视频缓存待实现）
 >12. 隔空阅读，同一局域网下阅读、聆听书籍或编辑书源、订阅源
