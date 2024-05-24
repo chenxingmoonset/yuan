@@ -79,18 +79,20 @@ java.longToast(String)
 java.randomUUID()
 //随机生成UUID
 
+java.getVerificationCode()
+//获取验证码图片
+
 js库中自定义函数：
 function functionName(){
   ...//function code
 }
 
 #############################
-待测试cookie变量的相关操作：存储、去除、取用、设置等
+待测试cookie变量的相关操作：存储、去除、取用、设置、替代等
 
-未实现：
+
 log()
 startBrowser()、startBrowserAwait()
 webView()、webViewGetSource()、webViewGetOverrideUrl()
-getVerificationCode()
 待续...
 ```
