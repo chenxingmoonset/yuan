@@ -82,13 +82,26 @@ java.randomUUID()
 java.getVerificationCode()
 //获取验证码图片
 
+java.setCookie()
+java.getCookie()
+//存取cookie
+
 js库中自定义函数：
 function functionName(){
   ...//function code
 }
 
+source.setVariable(String)
+source.getVariable()
+//存储、取用书源变量
+
+cache.put(key:String, value:Any)
+cache.get(key:String)
+//存储、取用缓存变量
+
 #############################
 待测试cookie变量的相关操作：存储、去除、取用、设置、替代等
+//set,remove,get,replace等
 
 
 log()
