@@ -27,8 +27,8 @@
 >15. 新增小组件，改进通知栏样式
 >16. 添加目录规则源及管理功能
 >17. 净化规则兼容排除范围字段
->18. 新增CookieJar，cookie相关操作仍待测试
->19. 待测试js引擎的websocket请求（可用于edge-tts大声朗读语音源的请求）
+>18. 新增CookieJar，cookie变量相关操作仍待测试
+>19. 待测试js引擎的websocket请求（可用于edge-tts大声朗读语音源的请求，仅源阅）
 ***********************************************************************
 ### 更多功能正在更新测试中......
 
@@ -39,9 +39,9 @@ java.ajax(urlStr: String)
 java.connect(urlStr: String, header:String)
 //网络连接测试
 java.get()
-//接收参数或者拦截重定向
+//接收参数或者拦截重定向get请求
 java.post(urlStr:String, body: String, headers:Map<string, string>)
-//网络post请求
+//网络post请求，拦截重定向
 
 java.base64Decode(str: String)
 java.base64Encode(str: String)
@@ -80,7 +80,7 @@ java.randomUUID()
 //随机生成UUID
 
 java.getVerificationCode()
-//获取验证码图片
+//获取验证码图片（仅验证码，reCAPTCHA不可用）
 
 java.setCookie()
 java.getCookie()
@@ -91,6 +91,7 @@ function functionName(){
   ...//function code
 }
 
+source.getKey()
 source.setVariable(String)
 source.getVariable()
 //存储、取用书源变量
@@ -100,12 +101,12 @@ cache.get(key:String)
 //存储、取用缓存变量
 
 #############################
-待测试cookie变量的相关操作：存储、去除、取用、设置、替代等
+待测试cookie变量的相关操作：设置、去除、取用、替代等
 //set,remove,get,replace等
 
-
-log()
-startBrowser()、startBrowserAwait()
-webView()、webViewGetSource()、webViewGetOverrideUrl()
+以下函数暂未实现：
+log();
+startBrowser()、startBrowserAwait();
+webView()、webViewGetSource()、webViewGetOverrideUrl();
 待续...
 ```
