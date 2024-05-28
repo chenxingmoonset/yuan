@@ -83,6 +83,10 @@ java.randomUUID()
 java.getVerificationCode()
 //获取验证码图片（仅验证码，reCAPTCHA不可用）
 
+
+java.startBrowserAwait(url: String, title: String): StrResponse
+//内置浏览器打开链接，可用于过验证
+
 java.setCookie()
 java.getCookie()
 //存取cookie
@@ -107,7 +111,7 @@ cache.get(key:String)
 
 以下函数暂未实现：
 log();
-startBrowser()、startBrowserAwait();
+startBrowser();
 webView()、webViewGetSource()、webViewGetOverrideUrl();
 待续...
 ```
