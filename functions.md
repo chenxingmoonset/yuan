@@ -97,6 +97,8 @@ function functionName(){
 }
 
 source.getKey()
+source.bookSourceComment
+
 source.setVariable(String)
 source.getVariable()
 //存储、取用书源变量
