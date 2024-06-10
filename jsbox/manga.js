@@ -1,6 +1,6 @@
 // JSBox code for comic discovery list
 // Author: chenxing
-// Date: 2024-02-17
+// Date: 2024-06-10
 // isbuilding...
 // Require modules
 //const $http = require("http");
@@ -8,8 +8,10 @@
 //const $cache = require("cache");
 //const $device = require("device");
 
+
+
 // Define constants
-const BASE_URL = "https://www.ccrip.com";
+const BASE_URL = "https://ccrip.com";
 const ROWS = 4;
 const COLS = 3;
 const PAGE_SIZE = ROWS * COLS;
@@ -33,13 +35,13 @@ let loading = false; // flag for loading status
 // Define main view
 $ui.render({
   props: {
-    title: "漫画发现"
+    title: "发现"
   },
   views: [
     {
       type: "matrix",
       props: {
-        id: "comic-list",
+        id: "discover-list",
         itemHeight: ITEM_HEIGHT,
         columns: COLS,
         spacing: 0,
@@ -75,7 +77,7 @@ $ui.render({
       events: {
         didSelect: function (sender, indexPath, data) {
           // Show comic detail view
-          showComicDetail(data);
+          showDetail(data);
         },
         didReachBottom: function (sender) {
           // Load next page of comics
@@ -89,7 +91,7 @@ $ui.render({
 });
 
 // Define comic detail view
-function showComicDetail(data) {
+function showDetail(data) {
   // Set detail object
   detail = data;
   // Clear chapters array
@@ -194,7 +196,7 @@ function showComicDetail(data) {
         events: {
           tapped: function (sender) {
             // Hide detail view
-            hideComicDetail();
+            hideDetail();
           }
         }
       },
@@ -228,7 +230,7 @@ function showComicDetail(data) {
         events: {
           didSelect: function (sender, indexPath, data) {
             // Show comic content view
-            showComicContent(data);
+            showContent(data);
           }
         }
       },
@@ -256,17 +258,17 @@ function showComicDetail(data) {
     ]
   });
   // Add detail view to main view
-  $("comic-list").add(detailView);
+  $("discover-list").add(detailView);
   // Load chapters
   loadChapters();
 }
 
 // Define comic content view
-function showComicContent(data) {
+function showContent(data) {
   // Clear images array
-  images = [];
+  //images = [];
   // Create content view
-  let contentView = $ui.push({
+  /*let contentView = $ui.push({
     type: "view",
     props: {
       id: "content-view"
@@ -281,10 +283,10 @@ function showComicContent(data) {
         },
         layout: $layout.fill,
         events: {
-          /*didEndDecelerating: function (sender) {
+          didEndDecelerating: function (sender) {
             // Load next image if needed
             loadNextImage();
-          }*/
+          }
         }
       },
       {
@@ -303,31 +305,34 @@ function showComicContent(data) {
         events: {
           tapped: function (sender) {
             // Hide content view
-            hideComicContent();
+            hideContent();
           }
         }
       }
     ]
   });
   // Add content view to detail view
-  $("detail-view").add(contentView);
+  $("detail-view").add(contentView);*/
   // Load images
   loadImages(data);
 }
 
 
+
 // Hide comic detail view
-function hideComicDetail() {
+function hideDetail() {
   // Remove detail view from main view
-  $("detail-view").remove();
+  //$("detail-view").remove();
   // Reset detail object
-  detail = null;
+  //detail = null;
+  $ui.pop();
 }
 
 // Hide comic content view
-function hideComicContent() {
+function hideContent() {
   // Remove content view from detail view
-  $("content-view").remove();
+  //$("content-view").remove();
+  $ui.pop();
 }
 
 // Toggle chapter list
@@ -401,9 +406,6 @@ function loadComics() {
           cover: {
             src: cover
           },
-          // JSBox code for comic discovery list (continued)
-// Author: Copilot
-// Date: 2024-02-17
           title: {
             text: title
           },
@@ -417,7 +419,7 @@ function loadComics() {
         comics.push(comic);
       }
       // Update comic list data
-      $("comic-list").data = comics;
+      $("discover-list").data = comics;
       // Hide loading indicator
       $ui.loading(false);
       // Set loading flag to false
@@ -461,7 +463,7 @@ function loadChapters() {
       // Update chapter list data
       $("chapter-list").data = chapters;//console.info(chapters);
       // Hide loading indicator
-      $ui.loading(false);
+//      $ui.loading(false);
     }
   });
 }
@@ -471,7 +473,7 @@ function loadImages(data) {
   // Check if data object is null
   if (data == null) return;
   // Show loading indicator
-  $ui.loading(true);
+//  $ui.loading(true);
   // Construct url with data url
   let url = BASE_URL + data.url;
   // Send http request
@@ -493,15 +495,15 @@ function loadImages(data) {
         images.push(addr);
       }
       // Load first image
-      loadFirstImage();
+      loadContent();
       // Hide loading indicator
-      $ui.loading(false);
+//      $ui.loading(true);
     }
   });
 }
 
 // Load first image
-function loadFirstImage() {
+function loadContent() {
   // Check if images array is empty
   if (images.length == 0) return;
   //give the standard html content 
@@ -535,11 +537,7 @@ function loadFirstImage() {
    htmlContent += `</div>
    </body>
    </html>`;
-   //console.info(htmlContent);
-  // Get first image url
-  //let url = images[0];console.info(url);
-  // Create image view
-  /*let imageView = */$ui.render({
+  $ui.push({
     views: [
       {
     type: "web",
@@ -547,54 +545,32 @@ function loadFirstImage() {
       html:htmlContent
     },
     layout: $layout.fill
+    },
+    {
+      type: "button",
+      props: {
+        id: "content-back",
+        title: "返回",
+        font: $font(16),
+        bgcolor: $color("lightGray")
+      },
+      layout: function (make, view) {
+        make.left.bottom.inset(10);
+        make.width.equalTo(80);
+        make.height.equalTo(40);
+      },
+      events: {
+        tapped: function (sender) {
+          // Hide content view
+          hideContent();
+        }
+      }
     }]
-  })/*{
-    type: "image",
-    props: {
-      id: "image-0",
-      src: url
-    },
-    layout: function (make, view) {
-      make.left.top.bottom.inset(0);
-      make.width.equalTo(IMAGE_WIDTH);
-    }
-  };*/
-  // Add image view to image list
-  //$("image-list").add(imageView);
-  // Update image list content size
-  //$("image-list").contentSize = $size(IMAGE_WIDTH, IMAGE_HEIGHT);
+  })
+
 }
 
-/*
-// Load next image
-function loadNextImage() {
-  // Get current image index
-  let index = Math.floor($("image-list").contentOffset.x / IMAGE_WIDTH);
-  // Check if index is out of range
-  if (index < 0 || index >= images.length - 1) return;
-  // Get next image url
-  let url = images[index + 1];
-  // Create image view
-  let imageView = {
-    type: "image",
-    props: {
-      id: "image-" + (index + 1),
-      src: url
-    },
-    layout: function (make, view) {
-      make.top.equalTo($("image-" + index).bottom);
-      make.left.bottom.inset(0);
-      make.width.equalTo(IMAGE_WIDTH);
-    }
-  };
-  // Add image view to image list
-  $("image-list").add(imageView);
-  // Update image list content size
-  $("image-list").contentSize = $size((index + 2) * IMAGE_WIDTH, IMAGE_HEIGHT);
-}
-*/
 
-// JSBox code for comic discovery list
 
 // Main function
 function main() {
@@ -604,5 +580,3 @@ function main() {
 
 // Call main function
 main();
-
-
