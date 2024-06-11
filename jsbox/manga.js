@@ -1,7 +1,6 @@
 // JSBox code for comic discovery list
 // Author: chenxing
-// Date: 2024-06-10
-// isbuilding...
+// Date: 2024-06-11
 // Require modules
 //const $http = require("http");
 //const $ui = require("ui");
@@ -10,8 +9,9 @@
 
 
 
+
 // Define constants
-const BASE_URL = "https://ccrip.com";
+const BASE_URL = "https://mxs13.cc";
 const ROWS = 4;
 const COLS = 3;
 const PAGE_SIZE = ROWS * COLS;
@@ -31,13 +31,66 @@ let detail = null; // current comic detail object
 let chapters = []; // array of chapter objects
 let images = []; // array of image urls
 let loading = false; // flag for loading status
+let tagList=[{"name":"首页","id":""},
+  {"name":"连载","id":"/booklist/?page="},
+  {"name":"完结","id":"/booklist/?page="},
+  {"name":"排行","id":"/rank"}];//tags for tab view
 
 // Define main view
 $ui.render({
   props: {
-    title: "发现"
+    title: "漫画模板"
   },
   views: [
+    {
+      type:"tab",
+      props:{
+        id:"menu",
+        items:tagList.map(function(item){return item.name}),
+      },
+      layout:function(make,view){
+          make.top.equalTo(0);
+          make.left.right.inset(5);
+          make.height.equalTo(30);},
+      events:{
+        changed:function(sender){
+          $cache.set("tag", tagList[sender.index].id);
+          uipush();
+          //$cache.set("pg",1);
+          //console.log($cache.get("tag"));
+        }
+      }
+    },
+    {
+      type: "input",
+      props: {
+          id: "input",
+          type:$kbType.search,
+          placeholder:"请输入名称...",
+      },
+      layout: function(make, view) {
+          make.top.equalTo($("menu").bottom).offset(2);
+          make.left.right.inset(5);
+          make.height.equalTo(30);
+      },
+      events: {
+          tapped:function(sender){
+            sender.focus();
+            maskView();
+          },//click to toast clipboard and render maskview to get or lost focus point of textfield
+          returned:function(sender){
+            if(sender.text!=""){
+              $cache.set("key", sender.text);
+              $("input").blur();
+              $ui.toast($cache.get("key"));
+              //uipush();
+            }else{
+              $("input").blur();
+              $ui.toast("请输入内容！")
+            }
+          },//end edit judge inputs 
+      }
+    },
     {
       type: "matrix",
       props: {
@@ -73,7 +126,10 @@ $ui.render({
           ]
         }
       },
-      layout: $layout.fill,
+      layout: function(make, view){
+        make.top.equalTo($("input").bottom).offset(2);
+        make.left.right.bottom.inset(1);
+      },
       events: {
         didSelect: function (sender, indexPath, data) {
           // Show comic detail view
@@ -89,6 +145,18 @@ $ui.render({
     }
   ]
 });
+
+//Define maskview
+function maskView(){
+  $ui.window.add({
+      type:"view",
+      props:{id:"maskView",bgcolor:$color("clear")},
+      layout:$layout.fill,
+      events:{
+          tapped:function(sender){$("input").blur();sender.remove();}
+      }
+  })
+  }
 
 // Define comic detail view
 function showDetail(data) {
@@ -317,8 +385,6 @@ function showContent(data) {
   loadImages(data);
 }
 
-
-
 // Hide comic detail view
 function hideDetail() {
   // Remove detail view from main view
@@ -367,7 +433,7 @@ function toggleChapterList() {
   }
 }
 
-// Load comics from web
+// Load main comics page from web
 function loadComics() {
   // Check if loading is in progress
   if (loading) return;
@@ -420,6 +486,126 @@ function loadComics() {
       }
       // Update comic list data
       $("discover-list").data = comics;
+      // Hide loading indicator
+      $ui.loading(false);
+      comics.splice(0,comics.length);
+      console.info(comics);
+      // Set loading flag to false
+      loading = false;
+    }
+  });
+}
+
+//ui changed
+function uipush() {
+  $ui.toast("success?");
+  $ui.push({
+    type: "matrix",
+    props: {
+      id: "discover-list0",
+      itemHeight: ITEM_HEIGHT,
+      columns: COLS,
+      spacing: 0,
+      template: {
+        views: [
+          {
+            type: "image",
+            props: {
+              id: "cover",
+              radius: 5
+            },
+            layout: function (make, view) {
+              make.left.top.right.inset(5);
+              make.height.equalTo(ITEM_HEIGHT - 30);
+            }
+          },
+          {
+            type: "label",
+            props: {
+              id: "title",
+              font: $font(14),
+              lines: 1
+            },
+            layout: function (make, view) {
+              make.left.right.inset(5);
+              make.top.equalTo($("cover").bottom).offset(5);
+            }
+          }
+        ]
+      }
+    },
+    layout: function(make, view){
+      make.top.equalTo(2);
+      make.left.right.bottom.inset(1);
+    },
+    events: {
+      didSelect: function (sender, indexPath, data) {
+        // Show comic detail view
+        showDetail(data);
+      },
+      didReachBottom: function (sender) {
+        // Load next page of comics
+        sender.endFetchingMore();
+        page++;
+        loadComics0();
+      }
+    }
+  })
+}
+
+//load tab page or search page from web
+function loadComics0() {
+  // Check if loading is in progress
+  if (loading) return;
+  // Set loading flag to true
+  loading = true;
+  // Show loading indicator
+  $ui.loading(true);
+  // Construct url with page number
+  let url = BASE_URL + $cache.get("tag") + page;$ui.toast(url);
+  // Send http request
+  $http.get({
+    url: url,
+    handler: function (resp) {
+      // Parse html data
+      let html = resp.data;console.info(html);
+      // Extract comic elements
+      let elements = html.match(/<div class="mh-item">[\s\S]*?<\/div>/g);
+      // Loop through each element
+      for (let element of elements) {
+        // Extract comic cover
+        let cover = "https://www.mxs11.cc/static/upload"+element.match(/<a href="([\s\S]*?)"[\s\S]*?>/)[1]+"/cover.jpg";//console.info(cover);
+        // Extract comic title
+        let title = element.match(/title="([\s\S]*?)"/)[1];
+        // Extract comic url
+        let url = element.match(/<a href="([\s\S]*?)"[\s\S]*?>/)[1];
+        // Extract comic author
+        //let author = element.match(/<span>作者：([\s\S]*?)<\/span>/)[1];
+        // Extract comic category
+        //let category = element.match(/<span>分类：([\s\S]*?)<\/span>/)[1];
+        // Extract comic status
+        //let status = element.match(/<span>状态：([\s\S]*?)<\/span>/)[1];
+        // Extract comic update
+        //let update = element.match(/<span>更新：([\s\S]*?)<\/span>/)[1];
+        // Create comic object
+        let comic = {
+          cover: {
+            src: cover
+          },
+          title: {
+            text: title
+          },
+          url: url,
+          //author: author,
+          //category: category,
+          //status: status,
+          //update: update
+        };
+        // Add comic object to comics array
+        comics.push(comic);
+      }
+      // Update comic list data
+      $("discover-list0").data = comics;
       // Hide loading indicator
       $ui.loading(false);
       // Set loading flag to false
