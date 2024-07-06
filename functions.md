@@ -1,4 +1,4 @@
-# 源阅tf v1.0(57)目前实现功能如下(like legado)：
+# 源阅tf v1.0(61)目前实现功能如下(like legado)：
 >1. 登陆ui与登陆url，完善书源网页登录逻辑
 >2. jslib：全局复用js函数库，在书源,rss订阅源,语音源中均实现。格式：直接填写js源码或远程url链接加载{"jsName":"https://xxx/xxx.js"}
 >3. 书源变量：通过`book.getVariable()`获取
@@ -27,13 +27,13 @@
 >15. 新增小组件，改进通知栏样式
 >16. 添加目录规则源及管理功能
 >17. 净化规则兼容排除范围字段
->18. ~~新增~~支持CookieJar，cookie变量相关操作仍待测试
->19. 内置edgetts免费语音源，version>=1.0(57)~~待测试~~支持js引擎的websocket请求（可用于edge-tts大声朗读语音源的请求，仅源阅）
->20. 增加搜索弹出**验证码**，**浏览器过验证**的兼容性
+>18. 支持CookieJar，cookie变量相关操作
+>19. 内置edgetts免费语音源，version>=1.0(57)支持js引擎的websocket请求（可用于edge-tts大声朗读语音源的请求，仅源阅可用）
+>20. 增加搜索弹出**验证码**，**浏览器过验证**功能的兼容性
 ***********************************************************************
 ### 更多功能正在更新测试中......
 
-# 源阅v1.0(57)书源内实现函数如下:
+# 源阅v1.0(61)书源内实现函数如下:
 ```javascript
 java.ajax(urlStr: String)
 //请求网络，urlStr为字符串，返回值为string
@@ -83,9 +83,8 @@ java.randomUUID()
 java.getVerificationCode()
 //获取验证码图片（仅验证码，reCAPTCHA不可用）
 
-
 java.startBrowserAwait(url: String, title: String): StrResponse
-//内置浏览器打开链接，可用于过验证
+//内置浏览器打开链接，可用于过验证。使用body方法获取请求网站的html，返回值为string
 
 java.setCookie()
 java.getCookie()
@@ -98,7 +97,7 @@ function functionName(){
 
 source.getKey()
 source.bookSourceComment
-
+//读取源网址、书源注释
 source.setVariable(String)
 source.getVariable()
 //存储、取用书源变量
@@ -107,9 +106,12 @@ cache.put(key:String, value:Any)
 cache.get(key:String)
 //存储、取用缓存变量
 
+cookie.getCookie(urlStr)
+//cookie变量的读取操作，urlStr为对应请求的网址，支持登陆(login)、浏览器打开(startBrowserAwait)以及正常搜索过程中的请求
+
 #############################
-待测试cookie变量的相关操作：设置、去除、取用、替代等
-//set,remove,get,replace等
+待测试cookie变量的相关操作：设置、去除、替代等
+//set,remove,replace等
 
 以下函数暂未实现：
 log();
