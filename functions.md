@@ -81,7 +81,7 @@ java.randomUUID()
 //随机生成UUID
 
 java.getVerificationCode()
-//获取验证码图片（仅验证码，reCAPTCHA不可用）
+//获取验证码图片（仅验证码，reCAPTCHA或滑动验证建议使用java.startBrowserAwait()方法）
 
 java.startBrowserAwait(url: String, title: String): StrResponse
 //内置浏览器打开链接，可用于过验证。使用body方法获取请求网站的html，返回值为string
