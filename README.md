@@ -17,5 +17,5 @@ release下载，或[点击复制链接](https://github.com/chenxingmoonset/selfm
 ### 源阅tf更新功能介绍详见functions.md，[点击前往](https://github.com/chenxingmoonset/yuan/blob/main/functions.md)
 
 -----------------------------------------
-## deup源、jsbox脚本，益达源，源阅源
+## deup源、jsbox脚本、益达源、源阅源、jskit
 >isuploading....
