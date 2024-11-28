@@ -1,4 +1,4 @@
-
+//网站新增图片验证，代码暂不可用
 const channelList = [
     { "name": "国产精华", "id": "/v.php?category=rf&viewtype=basic" },
     { "name": "91原创", "id": "/v.php?category=ori&viewtype=basic" },
