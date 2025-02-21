@@ -31,7 +31,7 @@
 >19. 内置edgetts免费语音源，version>=1.0(57)支持js引擎的websocket请求（猜测是基于ios的原生JavaScriptCore，可用于edge-tts大声朗读语音源的请求，仅源阅可用），优化edgetts语速，为所有tts增加语调调节功能
 >20. 增加搜索弹出**验证码**，**浏览器过验证**功能的兼容性
 >21. 增加云同步备份恢复功能，优化其兼容性
->22. 添加末行对齐功能，优化阅读样式的兼容性；新增无限滚动功能，待优化中
+>22. 添加末行对齐功能，优化阅读样式的兼容性；新增无限滚动功能，优化中
 >23. 兼容iOS18
 
 ***********************************************************************
@@ -73,6 +73,7 @@ java.getStringList(rule: String, isUrl: Boolean = false)
 java.getString(ruleStr: String?, isUrl: Boolean = false)
 //输入规则rule和URI标志isUrl获取文本，返回类型String
 
+java.getElement(ruleStr : String)
 java.getElements(ruleStr : String)
 //输入规则ruleStr获取节点列表，返回类型List<Any>
 ps：js库中可引入xiyueta库("https://www.xiyueta.com/js/xiyueta.min.js")作为解析html的第三方库
@@ -94,6 +95,9 @@ java.setCookie()
 java.getCookie()
 //存取cookie
 
+java.log()
+//类似于console.log()，在控制台中打印结果
+
 js库中自定义函数：
 function functionName(){
   ...//function code
@@ -112,13 +116,14 @@ cache.get(key:String)
 
 cookie.getCookie(urlStr)
 //cookie变量的读取操作，urlStr为对应请求的网址，支持登陆(login)、浏览器打开(startBrowserAwait)以及正常搜索过程中的请求
+cookie.removeCookie(urlStr)
+//cookie变量的去除操作
 
 #############################
-待测试cookie变量的相关操作：设置、去除、替代等
-//set,remove,replace等
+待测试cookie变量的相关操作：设置、替代等
+//set,replace等
 
 以下函数暂未实现：
-log();
 startBrowser();
 webView()、webViewGetSource()、webViewGetOverrideUrl();
 待续...
