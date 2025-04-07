@@ -1,4 +1,4 @@
-# 源阅tf v1.0(94)目前实现功能如下(like legado)：
+# 源阅tf v1.0(106)目前实现功能如下(like legado)：
 >1. 登陆ui与登陆url，完善书源网页登录逻辑
 >2. jslib：全局复用js函数库，在书源,rss订阅源,语音源中均实现。格式：直接填写js源码或远程url链接加载{"jsName":"https://xxx/xxx.js"}
 >3. 书源变量：通过`book.getVariable()`获取
