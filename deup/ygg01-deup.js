@@ -8,7 +8,23 @@ class ygg01 extends Deup {
     timeout:5000
     };
     
-    check = ()=>true;
+    inputs={
+      type:{
+        label:'类别',
+        required: false,
+        placeholder: '默认为电影，详情查看注释，eg：1',
+        /*电影:1，电视剧：2，综艺：3，动漫：4，短剧：5*/
+        },
+      };
+    
+    async check(){
+      try{
+        return (await this.list()).length>0;
+        }catch(e){
+        $alert(e.message);
+        }
+      return false;
+      };
     
     
     async get(object) {
@@ -32,14 +48,15 @@ class ygg01 extends Deup {
     async list(object = null, offset = 0, limit = 20) {
         if (object===null){
             const page = Math.floor(offset / limit) + 1;
-            const response = await $axios.get(`https://ygg01.com/vodshow/1--------${page}---.html`);
+            const type=(await $storage.inputs).type||'1';
+            const response = await $axios.get(`https://ygg01.com/vodshow/${type}--------${page}---.html`);
             const $ = $cheerio.load(response.data);
             let list=[];
             $('a.module-poster-item').map((i, el) => {
             const $a = $(el).find('a').first();
             const $image = $(el).find('img');
             const cover = $image.attr("data-original");
-            const name = $(el).find('.module-poster-item-title').attr('text');
+            const name = $(el).find('div.module-poster-item-title').text();
             const id=$(el).attr('href');
             list.push({
               id: id,
@@ -61,7 +78,7 @@ class ygg01 extends Deup {
             const $=$cheerio.load(resp.data);
             $("a.module-play-list-link").map((i,el)=>{
                 const $a=$(el);
-                const name=$a.attr("text");
+                const name=$a.text();
                 const id=$a.attr('href');
                 list.push({
                     id:id,
@@ -113,7 +130,7 @@ class ygg01 extends Deup {
 
     async search(object = null, keyword, offset = 0, limit=20){
         const page=Math.floor(offset/limit)+1;
-        const response= await axios.get(
+        const response= await $axios.get(
             `https://ygg01.com/vodsearch/${keyword}----------${page}---.html`
         );
         let list=[];
@@ -135,10 +152,10 @@ class ygg01 extends Deup {
         return list;
     }
 
-    async axios(url){
+/*    async axios(url){
         let resp=await $axios.get(url);
         return resp;
-    }
+    }*/
         
 }
 
