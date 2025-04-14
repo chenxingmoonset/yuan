@@ -9,9 +9,10 @@ release下载合集xbs文件，
 # 源阅(testflight)书源(未分组)
 
 >2024.3.8更新
+>release下载，或[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyuan/releases/download/20240308.2237/20240308.2237.json)
 
 部分见yuanyue文件夹（2025.4.14）
-release下载，或[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyuan/releases/download/20240308.2237/20240308.2237.json)
+
 
 
 
