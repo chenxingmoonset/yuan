@@ -1,8 +1,8 @@
-# 香色闺阁书源(已弃坑)
+香色闺阁书源(已弃坑)
 
->2023.10.3更新
+>2023.10.3上传
 
-右侧release下载合集xbs文件，
+release下载合集xbs文件，
 或者[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyuan/releases/download/booksource/mulShare.1.xbs)
 ``(❁´◡`❁)(❁´◡`❁) ``
 
@@ -10,6 +10,7 @@
 
 >2024.3.8更新
 
+部分见yuanyue文件夹（2025.4.14）
 release下载，或[点击复制链接](https://github.com/chenxingmoonset/selfmade-shuyuan/releases/download/20240308.2237/20240308.2237.json)
 
 
