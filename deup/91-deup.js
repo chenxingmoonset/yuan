@@ -1,4 +1,4 @@
-/**新增图片验证，暂不可用
+/**
  * 91porn plugin for Deup
  *
  * @class Porn91
