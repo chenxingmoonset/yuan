@@ -1,4 +1,4 @@
-# 源阅tf v1.0(118)目前实现功能如下(like legado)：
+# 源阅tf v1.0(120)目前实现功能如下(like legado)：
 >1. 登陆ui与登陆url，完善书源网页登录逻辑
 >2. jslib：全局复用js函数库，在书源,rss订阅源,语音源中均实现。格式：直接填写js源码或远程url链接加载{"jsName":"https://xxx/xxx.js"}
 >3. 书源变量：通过`book.getVariable()`获取
@@ -39,11 +39,11 @@
 >27. 源调试实现搜索和发现分开调试，html结果添加xpath、css、正则搜索功能（含源码和webview视图）
 >28. 支持网络文件源，支持断点续传
 >29. testing：书源添加《用户操作》功能，可自定义添加阅读界面图标功能 (主要用于测试章评)
-
+>30. testing：支持章评，段评(system version>= iOS18)
 ***********************************************************************
 ### 更多功能正在更新测试中......
 
-# 源阅version>=v1.0(94)书源内实现函数如下:
+# 源阅version>=v1.0(110)书源内实现函数如下:
 ```javascript
 java.ajax(urlStr: String)
 //请求网络，urlStr为字符串，返回值为string
@@ -94,6 +94,8 @@ java.randomUUID()
 java.getVerificationCode()
 //获取验证码图片（仅验证码，reCAPTCHA或滑动验证建议使用java.startBrowserAwait()方法）
 
+java.startBrowser();
+//内置浏览器打开链接，用于显示评论或其他外链内容
 java.startBrowserAwait(url: String, title: String): StrResponse
 //内置浏览器打开链接，可用于过验证。使用body方法获取请求网站的html，返回值为string
 
@@ -130,7 +132,6 @@ cookie.removeCookie(urlStr)
 //set,replace等
 
 以下函数暂未实现：
-startBrowser();
 webView()、webViewGetSource()、webViewGetOverrideUrl();
 待续...
 ```
