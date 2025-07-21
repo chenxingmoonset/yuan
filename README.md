@@ -13,7 +13,8 @@ release下载合集xbs文件，
 
 部分见yuanyue文件夹（2025.4.14）
 
-
+![章评](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0048.PNG)
+![段评](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0050.PNG)
 
 
 ### 源阅tf更新功能介绍详见functions.md，[点击前往](https://github.com/chenxingmoonset/yuan/blob/main/functions.md)
