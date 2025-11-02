@@ -43,6 +43,16 @@
 >31. testing：新增云同步
 >32. testing：新增网络文件书源类型；文本书源正文内容支持富文本格式
 ***********************************************************************
+小说评论区表现如下：
+![章评](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0048.PNG)章评
+![段评](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0050.PNG)段评
+
+富文本表现如下：
+![视频播放器](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0092.PNG)视频
+![图片展示](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0093.PNG)图片
+### 感谢浅殇大佬的书源支持
+
+
 ### 更多功能正在更新测试中......
 
 # 源阅version>=v1.0(110)书源内实现函数如下:
