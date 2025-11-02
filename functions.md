@@ -1,4 +1,4 @@
-# 源阅tf v1.0(130)目前实现功能如下(like legado)：
+# 源阅tf v1.0(136)目前实现功能如下(like legado)：
 >1. 登陆ui与登陆url，完善书源网页登录逻辑
 >2. jslib：全局复用js函数库，在书源,rss订阅源,语音源中均实现。格式：直接填写js源码或远程url链接加载{"jsName":"https://xxx/xxx.js"}
 >3. 书源变量：通过`book.getVariable()`获取
@@ -38,9 +38,10 @@
 >26. 暂时添加评论相关设置（如有相关源告知方便实现功能）
 >27. 源调试实现搜索和发现分开调试，html结果添加xpath、css、正则搜索功能（含源码和webview视图）
 >28. 支持网络文件源，支持断点续传
->29. testing：书源添加《用户操作》功能，可自定义添加阅读界面图标功能 (主要用于测试章评)
->30. testing：支持章评，段评(system version>= iOS18)
+>29. 书源添加《用户操作》功能，可自定义添加阅读界面图标功能 (主要用于测试章评)
+>30. 支持章评，段评(system version>= iOS18)
 >31. testing：新增云同步
+>32. testing：正文内容支持富文本
 ***********************************************************************
 ### 更多功能正在更新测试中......
 
@@ -98,7 +99,7 @@ java.getVerificationCode()
 java.startBrowser();
 //内置浏览器打开链接，用于显示评论或其他外链内容
 java.startBrowserAwait(url: String, title: String): StrResponse
-//内置浏览器打开链接，可用于过验证。使用body方法获取请求网站的html，返回值为string
+//跳转内置浏览器打开链接，可用于过验证。使用body方法获取请求网站的html，返回值为string
 
 java.setCookie()
 java.getCookie()
