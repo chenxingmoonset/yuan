@@ -48,8 +48,8 @@
 ![段评](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0050.PNG)段评
 
 富文本表现如下：
-![视频播放器](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0092.PNG)视频
-![图片展示](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0093.PNG)图片
+![视频播放器](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0092.png)视频播放
+![图片展示](https://github.com/chenxingmoonset/yuan/blob/main/yuanyue/images/IMG_0093.png)图片展示
 ### 感谢浅殇大佬的书源支持
 
 
