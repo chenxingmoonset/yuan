@@ -10,6 +10,14 @@ class eightmv extends Deup {
     
     check = ()=>true;
     
+    /*动作片：5；喜剧片：6；爱情片：7；科幻片：8；恐怖片：9；剧情片：10；战争片：11；纪录片：17；冒险片：18；悬疑片：19；惊悚片：26；动画片：27；微电影：16 */
+     inputs = {
+        tag:{
+           label:"类型",
+           require:false,
+           placeholder:"类型参考注释，默认为5",
+      },
+    };
     
     async get(object) {
        
@@ -32,13 +40,14 @@ class eightmv extends Deup {
     async list(object = null, offset = 0, limit = 20) {
         if (object===null){
             const page = Math.floor(offset / limit) + 1;
-            const response = await $axios.get(`https://m.88mv.org/vod-type-id-1-pg-${page}`);
+            const response = await $axios.get(`https://www.88ystv.com/vod-type-id-5-pg-${page}`);
             const $ = $cheerio.load(response.data);
             let list=[];
-            $('.globalPadding>ul').first().children('li').map((i, el) => {
+            $('.index-area>ul').first().children('li').map((i, el) => {
             const $a = $(el).find('a').first();
             const $image = $(el).find('img');
-            const cover = $image.attr('data-src');
+            const cover = $image.attr('data-original');
+            //$alert(cover);
             const name = $a.attr('title');
             const id=$a.attr('href');
             list.push({
@@ -54,15 +63,15 @@ class eightmv extends Deup {
             return list;
         }
         if (object.extra.list==="folder"){
-            let host="https://m.88mv.org";
+            let host="https://www.88ystv.com";
             let url=host.concat(object.id);
             let resp=await $axios.get(url);
             let list=[];
             const $=$cheerio.load(resp.data);
-            $("dd").map((i,el)=>{
+            $(".videourl>ul").map((i,el)=>{
                 const $a=$(el).find('a');
                 const name=$a.attr('title');
-                const id=$a.attr('href');
+                const id=$a.attr('href');//$alert(id);
                 list.push({
                     id:id,
                     name:name,
@@ -75,7 +84,7 @@ class eightmv extends Deup {
             return list;
         }
         if (object.extra.list==='episodelist'){
-            let host='https://m.88mv.org';
+            let host='https://www.88ystv.com';
             let vidpurl=host.concat(object.extra.episodeid);
             let resp=await $axios.get(vidpurl);
             let src=resp.data.match(/(?<=escape\(').*?(?=')/g)[0];
@@ -114,14 +123,14 @@ class eightmv extends Deup {
 
     async search(object = null, keyword, offset = 0, limit=20){
         const page=Math.floor(offset/limit)+1;
-        const response= await axios.get(
-            `https://m.88mv.org/search/search.php?q=wd-${keyword}-pg-${page}`
+        const response= await this.axios(
+            `https://www.88ystv.com/search/search.php?q=wd-${keyword}-pg-${page}`
         );
         let list=[];
         const $=$cheerio.load(response.data);
-        $('#data_list li').map((i,e)=>{
+        $('.index-area>ul').first().children('li').map((i,e)=>{
             const name=$(e).find('a').attr('title');
-            const cover=$(e).find('img').attr('data-src');
+            const cover=$(e).find('img').attr('data-original');
             const id=$(e).find('a').attr('href');
             list.push({
                 id:id,
