@@ -94,7 +94,8 @@ java.getString(ruleStr: String?, isUrl: Boolean = false)
 java.getElement(ruleStr : String)
 java.getElements(ruleStr : String)
 //输入规则ruleStr获取节点列表，返回类型List<Any>
-ps：js库中可引入xiyueta库("https://www.xiyueta.com/js/xiyueta.min.js")作为解析html的第三方库
+ps：js库中可引入xiyueta库("https://www.xiyueta.com/js/xiyueta.min.js")作为解析html的第三方库(xiyueta官网已失效)
+引入cheerio库会报错❌
 
 java.toast(String)
 java.longToast(String)
