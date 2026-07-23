@@ -1,3 +1,4 @@
+//网址已失效
 class ygg01 extends Deup {
 
     config = {
